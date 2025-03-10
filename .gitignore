@@ -45,7 +45,4 @@ Temporary Items
 # ruff cache
 ruff_cache/*
 
-# test scripts
-.scripts/*
-
 .output/*
