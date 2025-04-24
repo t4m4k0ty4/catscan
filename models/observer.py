@@ -18,12 +18,13 @@ class Observer:
         self.scheduler = AsyncIOScheduler()
 
     @staticmethod
-    async def get_current_value(page: Page) -> tuple[bool, str]:
+    async def get_current_value(page: Page) -> tuple[bool, str | None]:
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(page.link)
                 response.raise_for_status()
                 http_content = response.text
+                value = None
                 if page.selector_type == "xpath":
                     tree = html.fromstring(http_content)
                     elements = tree.xpath(page.selector)
@@ -34,7 +35,7 @@ class Observer:
                 elif page.selector_type == "regex":
                     match = re.search(page.selector, http_content)
                     value = match.group(0) if match else None
-                value = value.replace("\n", "").replace("\t", "")
+                value = value.replace("\n", "").replace("\t", "") if value else None
                 return True, value
         except Exception as e:
             return False, str(e)

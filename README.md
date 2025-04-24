@@ -20,17 +20,20 @@ A modern web application built with FastAPI for efficient data processing and sc
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/catscan.git
 cd catscan
 ```
 
-2. Install uv package manager and sync
+1. Install uv package manager and sync
+
 ```bash
 uv sync
 ```
 
-3. Run next script for init test sqlite base
+1. Run next script for initializing the test SQLite database
+
 ```bash
  python -m scripts.init_test_db
 ```
@@ -38,16 +41,19 @@ uv sync
 ## Usage
 
 Start the server:
+
 ```bash
 uvicorn main:app --reload
 ```
 
 The API documentation will be available at (app can use other port):
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-- Admin panel : http://localhost:8000/admin/pages
+
+- Swagger UI: <http://localhost:8000/docs>
+- ReDoc: <http://localhost:8000/redoc>
+- Admin panel : <http://localhost:8000/admin/pages>
 
 ### Log Outputs
+
 1. Console Output
    - Colored formatting using `colorlog`
    - Shows timestamp, logger name, level, and message
@@ -60,7 +66,9 @@ The API documentation will be available at (app can use other port):
    - Preserves complete logging history
 
 ### Configured Loggers
+
 - [`models.observer`](models/observer.py): Tracks page changes and updates (INFO level)
 - [`app.routers.admin_routes`](app/routers/admin_routes.py): Admin panel operations (DEBUG level)
 - `uvicorn`: Server logs (INFO level)
 - Root logger: Catches all other logging (INFO level)
+  

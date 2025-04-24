@@ -70,8 +70,8 @@ async def update_page(id: int, request: Annotated[PageDataRequest, Form()], sess
     return RedirectResponse(url="/admin/pages", status_code=303)
 
 
-@admin_router.post("/pages/{id}/delete")
-async def delete_page_form(id: int, session: SessionDep, method: Annotated[str, Form()] = None):
+@admin_router.delete("/pages/{id}/delete")
+async def delete_page_form(id: int, session: SessionDep):
     db = session
     try:
         await db.execute(delete(Page).where(Page.id == id))
@@ -79,11 +79,3 @@ async def delete_page_form(id: int, session: SessionDep, method: Annotated[str, 
         return RedirectResponse(url="/admin/pages", status_code=303)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
-
-
-@admin_router.delete("/pages/{id}/delete")
-async def delete_page(id: int, session: SessionDep):
-    db = session
-    await db.execute(delete(Page).where(Page.id == id))
-    await db.commit()
-    return RedirectResponse(url="/admin/pages", status_code=303)
