@@ -49,3 +49,6 @@ output/*
 
 # test database
 test.db
+
+# airflow
+airflow/logs
