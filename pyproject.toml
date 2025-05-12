@@ -3,12 +3,13 @@ name = "catscan"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "aiosqlite>=0.21.0",
     "apscheduler>=3.11.0",
     "colorlog>=6.9.0",
     "fastapi[standard]>=0.115.11",
+    "graphviz>=0.20.3",
     "greenlet>=3.1.1",
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
@@ -24,10 +25,7 @@ dependencies = [
 dev = "uvicorn processing.main:app --port 8000 --reload"
 
 [dependency-groups]
-dev = [
-    "djlint>=1.36.4",
-    "pytest>=8.3.5",
-]
+dev = ["djlint>=1.36.4", "pytest>=8.3.5"]
 lint = []
 
 [tool.ruff]
@@ -57,7 +55,6 @@ section-order = [
     "first-party",
     "local-folder",
 ]
-known-first-party = ["processing"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "F403", "E402"]

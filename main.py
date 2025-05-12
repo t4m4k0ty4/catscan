@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
     configure_logging()
     try:
         observer.scheduler.add_job(
-            func=observer.scheduled_check_changes, trigger=IntervalTrigger(minutes=5), id="check_changes"
+            func=observer.scheduled_check_changes, trigger=IntervalTrigger(minutes=1), id="check_changes"
         )
         observer.scheduler.start()
         yield
